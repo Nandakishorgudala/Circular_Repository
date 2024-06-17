@@ -2,6 +2,8 @@ const cors = require('cors');
 const express = require('express');
 const path = require('path');
 const mongoClient = require('mongodb').MongoClient;
+const bodyParser = require("body-parser");
+
 require('dotenv').config(); // Load environment variables
 
 const app = express();
@@ -10,7 +12,9 @@ app.use(cors());
 // Serve static files from the React app
 
 // Middleware to parse JSON bodies
-app.use(express.json());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connect to the database
 mongoClient.connect(process.env.DATABASE)

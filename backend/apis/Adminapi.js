@@ -122,11 +122,12 @@ adminApp.put('/delete-user', VerifyToken, expressAsyncHandler(async (req, res) =
 adminApp.post('/upload-circular', expressAsyncHandler(async (req, res) => {
     console.log(req.body);
     const newCir = req.body;
+    newCir.status = true;
 
     //post to artciles collection
     await circularCollection.insertOne(newCir);
     //send res
-    res.send({ message: "New article created" })
+    res.send({ message: "New circular created" })
 
 
 
@@ -176,6 +177,3 @@ adminApp.put('/restore-circular', VerifyToken, expressAsyncHandler(async (req, r
 
 //export userApp
 module.exports = adminApp;
-
-
-

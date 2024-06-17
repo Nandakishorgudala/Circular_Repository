@@ -1,14 +1,54 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Circular Repository</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Circular Repository</title>
+  <style>
+    /* Hide the Google Translate banner */
+    .goog-te-banner-frame.skiptranslate,
+    .VIpgJd-ZVi9od-ORHb-OEVmcd,
+    .VIpgJd-ZVi9od-ORHb-KE6vqe,
+    .goog-te-banner-frame {
+      display: none !important;
+    }
+    /* Hide the Google logo */
+    .goog-logo-link {
+      display: none !important;
+    }
+    /* Make the Google Translate gadget text transparent */
+    .goog-te-gadget {
+      color: transparent !important;
+    }
+    /* Position the Google Translate element */
+    #google_translate_element {
+      position: fixed;
+      right: 0;
+      bottom: 40px;
+      z-index: 9999;
+    }
+    /* Keep the language dropdown visible */
+    .goog-te-combo {
+      color: black !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+  <script>
+    function loadGoogleTranslate() {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: 'en',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        },
+        'google_translate_element'
+      );
+    }
+  </script>
+</body>
 </html>

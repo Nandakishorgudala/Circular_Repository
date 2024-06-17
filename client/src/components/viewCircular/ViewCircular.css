@@ -7,6 +7,8 @@
 .CircularsList {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-auto-rows: 1fr; /* This will make all rows (and thus all cards) of equal height */
+  align-items: stretch;
   margin-top: 30px;
   gap: 30px;
   row-gap: 50px;

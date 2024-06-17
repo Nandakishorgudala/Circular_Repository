@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login2.css'; // Import the CSS file
 import { StaffAdminLoginThunk } from "../redux/slices/StaffAdminSlice";
+import axios from "axios";
 
 function Login2() {
   const dispatch = useDispatch();
@@ -17,11 +18,25 @@ function Login2() {
     dispatch(StaffAdminLoginThunk(userCred));
     console.log("from login status", loginUserStatus);
   }
+  const sendEmail = async (email) => {
+    try {
+      const res = await axios.post("http://localhost:4000/staff-api/sendemail", { email }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log('Email sent:', res.data);
+    } catch (error) {
+      console.error('Error sending email:', error.response ? error.response.data : error.message);
+    }
+  };
 
   useEffect(() => {
     if (loginUserStatus) {
       if (currentUser?.userType === "staff") {
+        sendEmail(currentUser.email);
         navigate("/staff-profile");
+
       } else if (currentUser?.userType === "admin") {
         navigate("/admin-profile");
       }

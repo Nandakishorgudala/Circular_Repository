@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ViewCircular.css';
 import axios from 'axios';
-
-import CircularCard from '../circularcard/CircularCard';
 import { Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import CircularCard from '../circularcard/CircularCard';
+import './ViewCircular.css';
 
 function ViewCircular() {
   const { currentUser } = useSelector((state) => state.StaffAdminLoginReducer);
@@ -31,7 +30,7 @@ function ViewCircular() {
       try {
         console.log("Fetching circulars...");
         const res = await axiosWithToken.get("http://localhost:4000/staff-api/circulars");
-        console.log("Response:", res);
+       
         setCircularsList(res.data.payload);
         setFilteredCirculars(res.data.payload);
       } catch (error) {
